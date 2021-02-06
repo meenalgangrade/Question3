@@ -1,0 +1,34 @@
+<html>
+    <script>
+        function postFiles(){
+            console.log("postFiles");
+            let file1 = document.getElementById("file1").files[0];
+            let file2 = document.getElementById("file2").files[0];
+            let file3 = document.getElementById("file3").files[0];
+            let file4 = document.getElementById("file4").files[0];
+            let file5 = document.getElementById("file5").files[0];
+            console.log(file1);
+            let formData = new FormData();
+            formData.append("file1", file1);
+            formData.append("file2", file2);
+            formData.append("file3", file3);
+            formData.append("file4", file4);
+            formData.append("file5", file5);
+            fetch('http://localhost:3000/upload', {method: "POST", body: formData})
+            .then(response => response.json())
+            .then(data => {
+                alert(JSON.stringify(data));
+            });
+
+        }
+    </script>
+    <body>
+        <div><input type="file" id="file1" name="file1"></div>
+        <div><input type="file" id="file2" name="file2"></div>
+        <div><input type="file" id="file3" name="file3"></div>
+        <div><input type="file" id="file4" name="file4"></div>
+        <div><input type="file" id="file5" name="file5"></div>
+        <div><button id='submit' onclick="postFiles()">Submit</button></div>
+    </body>
+</html>
+
